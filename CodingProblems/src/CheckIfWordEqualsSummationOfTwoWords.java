@@ -12,29 +12,30 @@ You are given three strings firstWord, secondWord, and targetWord, each consisti
 Return true if the summation of the numerical values of firstWord and secondWord equals the numerical value of targetWord, or false otherwise.
  */
 public class CheckIfWordEqualsSummationOfTwoWords {
-	public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
-        return ((getValue(firstWord) + getValue(secondWord)) == getValue(targetWord));
-    }
+	public static HashMap<Character, Integer> map = new HashMap<Character, Integer>();
 	
-	private static int getValue(String str) {
-		HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        map.put('a', Integer.valueOf(0));
-        map.put('b', Integer.valueOf(1));
-        map.put('c', Integer.valueOf(2));
-        map.put('d', Integer.valueOf(3));
-        map.put('e', Integer.valueOf(4));
-        map.put('f', Integer.valueOf(5));
-        map.put('g', Integer.valueOf(6));
-        map.put('h', Integer.valueOf(7));
-        map.put('i', Integer.valueOf(8));
-        map.put('j', Integer.valueOf(9));
-        String currString = str;
-        int value = 0;
-        int M = 1;
-        for (int i = currString.length()-1; i >= 0; i--) {
-        	value += map.get(currString.charAt(i)) * M;
-        	M *= 10;
-        }
-        return value;
+	public boolean isSumEqual(String firstWord, String secondWord, String targetWord) {
+		map.put('a', Integer.valueOf(0));
+		map.put('b', Integer.valueOf(1));
+		map.put('c', Integer.valueOf(2));
+		map.put('d', Integer.valueOf(3));
+		map.put('e', Integer.valueOf(4));
+		map.put('f', Integer.valueOf(5));
+		map.put('g', Integer.valueOf(6));
+		map.put('h', Integer.valueOf(7));
+		map.put('i', Integer.valueOf(8));
+		map.put('j', Integer.valueOf(9));
+		return ((getValue(firstWord) + getValue(secondWord)) == getValue(targetWord));
+	}
+
+	private int getValue(String str) {
+		String currString = str;
+		int value = 0;
+		int M = 1;
+		for (int i = currString.length() - 1; i >= 0; i--) {
+			value += map.get(currString.charAt(i)) * M;
+			M *= 10;
+		}
+		return value;
 	}
 }
